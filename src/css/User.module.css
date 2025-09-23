@@ -1,0 +1,90 @@
+.main {
+  width: 100%;
+}
+
+.coursecard {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 200px; /* ✅ fixed width */
+  height: 150px; /* ✅ fixed height (optional) */
+  background: #f3f3f3;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap; /* ✅ allows items to move to next row */
+  gap: 16px;
+}
+
+.coursecard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.coursecard h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.coursecard p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.addbtn {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  padding: 20px;
+}
+
+.addbtn button {
+  background-color: #2563eb; /* blue */
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.addbtn button:hover {
+  background-color: #1e40af; /* darker blue on hover */
+  transform: translateY(-2px);
+}
+
+.popup {
+  width: 300px; /* ✅ fixed width */
+  height: 300px; /* ✅ fixed height (optional) */
+  position: fixed;
+  margin: 100px auto;
+  z-index: 999;
+  margin-left: 40%;
+  background: beige;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exit {
+  color: red;
+}
+
+.exit:hover {
+  cursor: pointer;
+}

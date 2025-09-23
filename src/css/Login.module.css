@@ -1,0 +1,76 @@
+.Login {
+  margin: 100px auto;
+  width: 450px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.btn-login {
+  background: #4a90e2;
+  color: white;
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
+.btn-login:hover {
+  background: #357ab8;
+  box-shadow: 0 6px 12px rgba(74, 144, 226, 0.5);
+}
+.btn-login:active {
+  transform: scale(0.96);
+}
+
+.btn-register {
+  background: #50c878; /* Emerald green */
+  color: white;
+  box-shadow: 0 4px 8px rgba(80, 200, 120, 0.3);
+}
+.btn-register:hover {
+  background: #3da465;
+  box-shadow: 0 6px 12px rgba(80, 200, 120, 0.5);
+}
+.btn-register:active {
+  transform: scale(0.96);
+}
+
+.div-username-password {
+  margin: 10px;
+}
+
+.title {
+  align-items: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.inputareastyle {
+  width: 300px;
+  padding: 12px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+  margin: 5px;
+}
