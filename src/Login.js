@@ -18,14 +18,15 @@ function Login() {
     };
 
     try {
-      const response = await fetch(
-        "https://quizapp162001.netlify.app/.netlify/functions/proxy/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(user),
-        }
-      );
+         
+      const url = "/.netlify/functions/proxy/login";
+      console.log(url);
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
 
       if (!response.ok) {
         throw new Error("Login failed");
