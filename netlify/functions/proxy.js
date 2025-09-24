@@ -32,7 +32,7 @@ export async function handler(event) {
     // Forward request to backend
     const response = await fetch(backendUrl, {
       method: event.httpMethod,
-      headers,
+      headers: { "Content-Type": "application/json" },
       body: ["GET", "HEAD"].includes(event.httpMethod) ? undefined : event.body,
     });
 
