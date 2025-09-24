@@ -13,7 +13,7 @@ export async function handler(event) {
   }
 
   try {
-    const backendBase = "https://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
+    const backendBase = "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
     const cleanPath = event.path.replace("/.netlify/functions/proxy", "");
     const backendUrl = `${backendBase}${cleanPath}${event.rawQuery ? "?" + event.rawQuery : ""}`;
 
@@ -26,6 +26,8 @@ export async function handler(event) {
     if (event.headers.authorization) {
       headers["Authorization"] = event.headers.authorization;
     }
+
+    console.log(headers);
 
     // Forward request to backend
     const response = await fetch(backendUrl, {
