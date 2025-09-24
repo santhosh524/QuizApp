@@ -2,7 +2,7 @@ import styles from "./css/User.module.css";
 import { useEffect, useState } from "react";
 import Quiz from "./Quiz";
 
-export default function User({handleHome}) {
+export default function User({ handleHome }) {
   const [courses, setCourses] = useState([]);
   const [popup, setPopup] = useState(false);
   const [courseFormData, setCourseFormData] = useState({
@@ -25,7 +25,7 @@ export default function User({handleHome}) {
 
       try {
         const response = await fetch(
-          "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/usercoursedetails",
+          "/.netlify/functions/proxy/usercoursedetails",
           {
             method: "GET",
             headers: {
@@ -73,7 +73,7 @@ export default function User({handleHome}) {
     console.log(newCourse);
 
     try {
-      const response = await fetch("http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/requestCourse", {
+      const response = await fetch("/.netlify/functions/proxy/requestCourse", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

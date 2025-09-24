@@ -20,7 +20,7 @@ export default function Admin() {
     async function assignNotifications(user) {
       try {
         const response = await fetch(
-          `http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/getnotifications/${user.username}`,
+          `/.netlify/functions/proxy/getnotifications/${user.username}`,
           {
             method: "GET",
             headers: {
@@ -43,7 +43,7 @@ export default function Admin() {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/users", {
+        const response = await fetch("/.netlify/functions/proxy/users", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ export default function Admin() {
 
   const handleDivClick = async (username) => {
     const token = localStorage.getItem("token");
-    const url = `http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/${username}`;
+    const url = `/.netlify/functions/proxy/${username}`;
 
     try {
       const response = await fetch(url, {
@@ -153,7 +153,7 @@ export default function Admin() {
 function RenderCourses({ selectedUser, courses, handleDivClick }) {
   const handleAssign = async (courseId) => {
     const token = localStorage.getItem("token");
-    const url = `http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/${selectedUser}/${courseId}`;
+    const url = `/.netlify/functions/proxy/${selectedUser}/${courseId}`;
 
     try {
       const response = await fetch(url, {

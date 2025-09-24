@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Quiz({ course, handleHome }) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const navigate = useNavigate();
-
-  console.log(course);
 
   const quizProperties = {
     category: course.c_name,
@@ -25,14 +21,17 @@ export default function Quiz({ course, handleHome }) {
 
     const fetchData = async () => {
       try {
-        const response = await fetch("http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/getQuestions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(quizProperties),
-        });
+        const response = await fetch(
+          "/.netlify/functions/proxy/getQuestions",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(quizProperties),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch questions");
@@ -69,26 +68,27 @@ export default function Quiz({ course, handleHome }) {
     }
 
     try {
-      const response = await fetch("http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/results", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          courseId: course.course_id,
-          answers: answers,
-        }),
-      });
+      const response = await fetch(
+        "/.netlify/functions/proxy/results",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            courseId: course.course_id,
+            answers: answers,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to submit answers");
       }
 
-     
       alert(await response.text());
       handleHome(false);
-      
     } catch (error) {
       console.error(error);
     }

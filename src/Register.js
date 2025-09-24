@@ -28,7 +28,7 @@ export default function Register() {
     };
 
     const response = await fetch(
-      "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/register",
+      "/.netlify/functions/proxy/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

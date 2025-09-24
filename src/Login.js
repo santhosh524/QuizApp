@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import styles from "./css/Login.module.css";
+
 import { jwtDecode } from "jwt-decode";
 
 function Login() {
@@ -18,7 +18,7 @@ function Login() {
     };
 
     try {
-      const response = await fetch("http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com/login", {
+      const response = await fetch("/.netlify/functions/proxy/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
