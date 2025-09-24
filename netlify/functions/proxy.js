@@ -1,29 +1,29 @@
-
-
 export async function handler(event) {
   try {
-    const backendBase = "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
+    const backendBase =
+      "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
 
     const cleanPath = event.path.replace("/.netlify/functions/proxy", "");
-    const backendUrl = `${backendBase}${cleanPath}${event.rawQuery ? "?" + event.rawQuery : ""}`;
+    const backendUrl = `${backendBase}${cleanPath}${
+      event.rawQuery ? "?" + event.rawQuery : ""
+    }`;
 
-    console.log("Proxying request to:", backendUrl);
+    console.log("Proxying:", event.httpMethod, backendUrl);
 
-    // Native fetch is available on Netlify (Node 18+)
+    // Forward all headers except 'host'
+    const headers = { ...event.headers };
+    delete headers.host;
+
     const response = await fetch(backendUrl, {
       method: event.httpMethod,
-      headers: {
-        ...event.headers,
-        host: null,
-      },
+      headers,
       body: ["GET", "HEAD"].includes(event.httpMethod) ? undefined : event.body,
     });
 
     const contentType = response.headers.get("content-type") || "text/plain";
-    const body =
-      contentType.includes("application/json")
-        ? JSON.stringify(await response.json())
-        : await response.text();
+    const body = contentType.includes("application/json")
+      ? JSON.stringify(await response.json())
+      : await response.text();
 
     return {
       statusCode: response.status,
