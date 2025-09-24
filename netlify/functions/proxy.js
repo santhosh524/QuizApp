@@ -15,7 +15,7 @@ export async function handler(event) {
   try {
     // Base URL of your Spring Boot backend on AWS
     const backendBase =
-      "https://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
+      "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
 
     // Remove Netlify function prefix from path
     const cleanPath = event.path.replace("/.netlify/functions/proxy", "");
