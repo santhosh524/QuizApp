@@ -1,4 +1,6 @@
 export async function handler(event) {
+  console.log(event);
+
   try {
     const backendBase =
       "http://quiz-env.eba-ijxspiej.us-east-1.elasticbeanstalk.com";
@@ -14,6 +16,9 @@ export async function handler(event) {
     const headers = { ...event.headers };
     delete headers.host;
 
+    console.log(headers);
+    console.log(event.body);
+
     const response = await fetch(backendUrl, {
       method: event.httpMethod,
       headers,
@@ -21,9 +26,12 @@ export async function handler(event) {
     });
 
     const contentType = response.headers.get("content-type") || "text/plain";
+
     const body = contentType.includes("application/json")
       ? JSON.stringify(await response.json())
       : await response.text();
+
+    console.log(body);
 
     return {
       statusCode: response.status,

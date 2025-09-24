@@ -18,11 +18,7 @@ function Login() {
     };
 
     try {
-         
-      const url = "/.netlify/functions/proxy/login";
-      console.log(url);
-
-      const response = await fetch(url, {
+      const response = await fetch("/.netlify/functions/proxy/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
